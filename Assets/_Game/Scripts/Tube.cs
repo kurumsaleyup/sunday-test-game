@@ -8,7 +8,7 @@ public class Tube : MonoBehaviour
     [SerializeField] [Range(20, 100)] private int ballCount = 40;
     [SerializeField] private GameObject ballPrefab;
     [SerializeField] private float gapBetweenBalls = 0.4f;
-
+    public int BallCount => ballCount;
     
     #region Editor
 
