@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2155587960583907470, guid: da212dacbc3eebf4d8a0e5b09cb89f32, type: 3}
+      propertyPath: rotationLerpSpeed
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8325442699207122691, guid: da212dacbc3eebf4d8a0e5b09cb89f32, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -653,4 +657,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c24166b3b27c8334fb4599cc6c9b7894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <BallCount>k__BackingField: 30

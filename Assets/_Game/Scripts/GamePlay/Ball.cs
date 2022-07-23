@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -16,14 +17,23 @@ public class Ball : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (transform.localPosition.y > 1f)
-        {
-            transform.parent = null;
-        }
         if (transform.position.y < -20f)
         {
             _level.BallDidFallOff();
             Destroy(gameObject);
+        }
+    }
+
+    #endregion
+
+
+    #region Trigger
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("TubeExit"))
+        {
+            transform.parent = null;
         }
     }
 
