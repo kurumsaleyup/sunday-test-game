@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -11,6 +12,11 @@ public class TubeController : MonoBehaviour
     private void Start()
     {
         InputManager.Instance.onDrag += OnDrag;
+    }
+
+    public void LevelDidEnd()
+    {
+        InputManager.Instance.onDrag -= OnDrag;
     }
 
     #endregion

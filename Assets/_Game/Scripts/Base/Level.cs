@@ -11,6 +11,8 @@ public class Level : MonoBehaviour
    
    private int _ballCount;
    private Tube _tube;
+   private TubeController _tubeController;
+
    private bool _isFailed;
 
 
@@ -19,6 +21,7 @@ public class Level : MonoBehaviour
    private void Start()
    {
       _tube = GetComponentInChildren<Tube>();
+      _tubeController = GetComponentInChildren<TubeController>();
       levelSucceedPanel.SetActive(false);
       levelFailedPanel.SetActive(false);
    }
@@ -49,6 +52,7 @@ public class Level : MonoBehaviour
       
       levelFailedPanel.SetActive(_isFailed);
       levelSucceedPanel.SetActive(!_isFailed);
+      _tubeController.LevelDidEnd();
    }
    #endregion
    
