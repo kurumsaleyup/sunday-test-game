@@ -45,7 +45,7 @@ public class LevelGenerator : MonoBehaviour
 
                 var vertex = new Vector3();
 
-                vertex.x =  radius * Mathf.Sin(u * Mathf.PI * 2.0f);
+                vertex.x = sprite.vertices[Mathf.Max(0,y-1)].x * height + radius * Mathf.Sin(u * Mathf.PI * 2.0f);
                 vertex.y = sprite.vertices[Mathf.Max(0,y-1)].y * height + (sprite.vertices[Mathf.Max(0,y-1)].y * height * 0.5f);
                 vertex.z = radius * Mathf.Cos(u * Mathf.PI * 2.0f);
 
