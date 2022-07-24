@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ public class Cup : MonoBehaviour
     [SerializeField] private Tube tube;
     private List<Ball> _balls = new List<Ball>();
     private TextMeshProUGUI _textMeshProUGUI;
+    private float _initialFontSize;
     private Level _level;
 
 
@@ -17,6 +19,7 @@ public class Cup : MonoBehaviour
         _level = GetComponentInParent<Level>();
         _textMeshProUGUI = GetComponentInChildren<TextMeshProUGUI>();
         _textMeshProUGUI.text = _balls.Count + "/" + tube.BallCount;
+        _initialFontSize = _textMeshProUGUI.fontSize;
 
     }
 
@@ -36,8 +39,11 @@ public class Cup : MonoBehaviour
         }
 
         _balls.Add(ball);
-        _textMeshProUGUI.text = _balls.Count + "/" + tube.BallCount;
         _level.BallDidGetInCup();
+        _textMeshProUGUI.text = _balls.Count + "/" + tube.BallCount;
+        var endSize = Mathf.Max(_initialFontSize+0.1f,_textMeshProUGUI.fontSize + 0.05f);
+        DOTween.To(() => _textMeshProUGUI.fontSize, x => _textMeshProUGUI.fontSize = x, endSize, 0.05f)
+            .OnComplete(()=>_textMeshProUGUI.fontSize = _initialFontSize);
     }
     #endregion
 
