@@ -41,7 +41,7 @@ public class Cup : MonoBehaviour
         _balls.Add(ball);
         _level.BallDidGetInCup();
         _textMeshProUGUI.text = _balls.Count + "/" + tube.BallCount;
-        var endSize = Mathf.Max(_initialFontSize+0.1f,_textMeshProUGUI.fontSize + 0.05f);
+        var endSize = Mathf.Min(1f,_textMeshProUGUI.fontSize + 0.05f);
         DOTween.To(() => _textMeshProUGUI.fontSize, x => _textMeshProUGUI.fontSize = x, endSize, 0.05f)
             .OnComplete(()=>_textMeshProUGUI.fontSize = _initialFontSize);
     }
