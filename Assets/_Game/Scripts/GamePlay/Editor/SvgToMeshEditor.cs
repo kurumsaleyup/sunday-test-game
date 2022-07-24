@@ -12,7 +12,7 @@ public class SvgToMeshEditor : Editor
         base.OnInspectorGUI();
         _levelGenerator = target as LevelGenerator;
 
-        if(GUILayout.Button("Create Sprite"))
+        if(GUILayout.Button("Create mesh"))
         {
             EditorUtility.SetDirty(_levelGenerator);
             _levelGenerator.SpriteToMesh();
