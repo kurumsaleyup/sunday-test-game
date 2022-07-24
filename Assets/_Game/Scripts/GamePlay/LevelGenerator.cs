@@ -22,10 +22,12 @@ public class LevelGenerator : MonoBehaviour
         CreateCylinder(mesh);
         var filter = go.AddComponent<MeshFilter>();
         var rnd = go.AddComponent<MeshRenderer>();
+        var col = go.AddComponent<MeshCollider>();
 
         MeshSmoothing.HCFilter(mesh, 10, hcAlpha, hcBeta);
         // MeshSmoothing.LaplacianFilter(mesh, 5);
         filter.mesh = mesh;
+        col.sharedMesh = mesh;
         rnd.material = material;
     }
 
