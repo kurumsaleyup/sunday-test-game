@@ -13,6 +13,9 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private float radius = 2;
     [SerializeField] [Range(0f, 1f)] private float hcAlpha = 0.5f;
     [SerializeField] [Range(0f, 1f)] private float hcBeta = 0.5f;
+    [SerializeField] private bool flipNormals;
+    [SerializeField] private bool shouldSmooth;
+    
 
 
     public void SpriteToMesh()
@@ -24,7 +27,10 @@ public class LevelGenerator : MonoBehaviour
         var rnd = go.AddComponent<MeshRenderer>();
         var col = go.AddComponent<MeshCollider>();
 
-        MeshSmoothing.HCFilter(mesh, 10, hcAlpha, hcBeta);
+        if (shouldSmooth)
+        {
+            MeshSmoothing.HCFilter(mesh, 10, hcAlpha, hcBeta);
+        }
         // MeshSmoothing.LaplacianFilter(mesh, 5);
         filter.mesh = mesh;
         col.sharedMesh = mesh;
@@ -79,13 +85,26 @@ public class LevelGenerator : MonoBehaviour
                 var v3 = verticesLists[y + 1][x + 1];
                 var v4 = verticesLists[y][x + 1];
 
-                triangles.Add(v1);
-                triangles.Add(v2);
-                triangles.Add(v4);
+                if (flipNormals)
+                {
+                    triangles.Add(v4);
+                    triangles.Add(v2);
+                    triangles.Add(v1);
 
-                triangles.Add(v2);
-                triangles.Add(v3);
-                triangles.Add(v4);
+                    triangles.Add(v4);
+                    triangles.Add(v3);
+                    triangles.Add(v2);
+                }
+                else
+                {
+                    triangles.Add(v1);
+                    triangles.Add(v2);
+                    triangles.Add(v4);
+
+                    triangles.Add(v2);
+                    triangles.Add(v3);
+                    triangles.Add(v4);
+                }
             }
         }
 
@@ -93,5 +112,7 @@ public class LevelGenerator : MonoBehaviour
         mesh.triangles = triangles.ToArray();
 
         mesh.RecalculateNormals();
+        mesh.RecalculateBounds();
+        mesh.RecalculateTangents();
     }
 }
