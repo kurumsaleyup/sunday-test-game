@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using mattatz.MeshSmoothingSystem;
 using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
@@ -10,6 +11,8 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private int radialSegments = 20;
     [SerializeField] private Material material;
     [SerializeField] private float radius = 2;
+    [SerializeField] [Range(0f, 1f)] private float hcAlpha = 0.5f;
+    [SerializeField] [Range(0f, 1f)] private float hcBeta = 0.5f;
 
 
     public void SpriteToMesh()
@@ -17,8 +20,12 @@ public class LevelGenerator : MonoBehaviour
         GameObject go = new GameObject("Generated Level");
         Mesh mesh = new Mesh();
         CreateCylinder(mesh);
-        go.AddComponent<MeshFilter>().mesh = mesh;
+        var filter = go.AddComponent<MeshFilter>();
         var rnd = go.AddComponent<MeshRenderer>();
+
+        MeshSmoothing.HCFilter(mesh, 10, hcAlpha, hcBeta);
+        // MeshSmoothing.LaplacianFilter(mesh, 5);
+        filter.mesh = mesh;
         rnd.material = material;
     }
 
@@ -45,8 +52,11 @@ public class LevelGenerator : MonoBehaviour
 
                 var vertex = new Vector3();
 
-                vertex.x = sprite.vertices[Mathf.Max(0,y-1)].x * height + radius * Mathf.Sin(u * Mathf.PI * 2.0f);
-                vertex.y = sprite.vertices[Mathf.Max(0,y-1)].y * height + (sprite.vertices[Mathf.Max(0,y-1)].y * height * 0.5f);
+                var spriteVert = sprite.vertices[Mathf.Max(0, y - 1)];
+                var xOffset = spriteVert.x * height;
+
+                vertex.x = xOffset + radius * Mathf.Sin(u * Mathf.PI * 2.0f);
+                vertex.y = spriteVert.y * height + (spriteVert.y * height * 0.5f);
                 vertex.z = radius * Mathf.Cos(u * Mathf.PI * 2.0f);
 
                 vertices.Add(vertex);
@@ -78,7 +88,7 @@ public class LevelGenerator : MonoBehaviour
         }
 
         mesh.vertices = vertices.ToArray();
-        mesh.triangles = triangles.ToArray().Reverse().ToArray();
+        mesh.triangles = triangles.ToArray();
 
         mesh.RecalculateNormals();
     }
