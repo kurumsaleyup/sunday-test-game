@@ -294,7 +294,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.06975647, y: 0, z: 0, w: 0.9975641}
-  m_LocalPosition: {x: 0, y: 6, z: -15}
+  m_LocalPosition: {x: 0, y: 4, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -355,7 +355,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8742538545776668643, guid: 8492c45ee589d7346a2fee3af7afcce8, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8742538545776668643, guid: 8492c45ee589d7346a2fee3af7afcce8, type: 3}
       propertyPath: m_LocalScale.x
@@ -371,11 +371,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8742538545776668643, guid: 8492c45ee589d7346a2fee3af7afcce8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -2.28
       objectReference: {fileID: 0}
     - target: {fileID: 8742538545776668643, guid: 8492c45ee589d7346a2fee3af7afcce8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.599
+      value: 5.93
       objectReference: {fileID: 0}
     - target: {fileID: 8742538545776668643, guid: 8492c45ee589d7346a2fee3af7afcce8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -442,10 +442,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: -7871556540511652807, guid: 8492c45ee589d7346a2fee3af7afcce8, type: 3}
   height: 5
-  radialSegments: 20
-  heightSegments: 20
+  radialSegments: 15
   material: {fileID: 2100000, guid: 4bbc5ee2a36099e4695e6873652020fd, type: 2}
-  radius: 1
+  radius: 0.5
 --- !u!4 &1342525531
 Transform:
   m_ObjectHideFlags: 0
@@ -458,7 +457,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1381204934
 GameObject:
